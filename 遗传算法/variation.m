@@ -1,22 +1,28 @@
 function [child_path]=variation(path,pv,map)
-%%±äÒì²Ù×÷£¬pvÊÇ±äÒì¸ÅÂÊ
+%%å˜å¼‚æ“ä½œï¼Œpvæ˜¯å˜å¼‚æ¦‚ç‡
 NP=size(path,1);
 pathnum=size(path,2);
 child_path=path;
 for i=1:1:NP
-    if rand(1)<= pv
-        for y=1:1:floor(pathnum/2)%%ºÃ¶à¸öµã·¢Éú±äÒì
-        j=randi([2 pathnum-1],1,1);
-        k(1)=child_path(i,j,1);
-        k(2)=floor((child_path(i,j-1,2)+child_path(i,j+1,2))/2)+randi([-5,5],1,1);%%round(normrnd(0,3,[1 1]));
-        if k(2)>301
-            k(2)=301;
-        elseif k(2)<1
-            k(2)=1;
+    if rand(1)<= pv    %å°äºå˜å¼‚æ¦‚ç‡ç›´æ¥é€€å‡º
+        
+        
+        for y=1:1:floor(pathnum/2)%%å¥½å¤šä¸ªç‚¹å‘ç”Ÿå˜å¼‚
+            j=randi([2 pathnum-1],1,1);
+            k(1)=child_path(i,j,1);
+            k(2)=floor((child_path(i,j-1,2)+child_path(i,j+1,2))/2)+randi([-5,5],1,1);%%round(normrnd(0,3,[1 1]));
+           
+            if k(2)>map.x_Interval%ç¡®ä¿yè½´çš„å€¼ä¸è¶…å‡ºç©ºé—´
+                k(2)=map.x_Interval;
+            elseif k(2)<1
+                k(2)=1;
+            end
+            
+            k(3)=map.Z(k(1),k(2))+randi([50 300],1,1);
+            child_path(i,j,:)=k;
         end
-        k(3)=map.Z(k(1),k(2))+randi([50 300],1,1);
-        child_path(i,j,:)=k;
-        end
+        
+        
     end
 end
 end

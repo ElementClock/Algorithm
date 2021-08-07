@@ -1,25 +1,30 @@
 function [pitch_value_true,pitch_value]=cal_pitch_value(path,map)
-NP=size(path,1);%%ÖÖÈºÊýÁ¿
-pathnum=size(path,2);%%Â·¾¶µãÊýÁ¿
-pitch_value_true=zeros(1,NP);%%³õÊ¼»¯¸©Ñö½ÇÊý¾Ý
-%%¸©Ñö½Ç³Í·£ÖµÓë¸©Ñö½Ç£¨µ¥Î»Îª¶È£©
+NP=size(path,1);%%ç§ç¾¤æ•°é‡
+pathnum=size(path,2);%%è·¯å¾„ç‚¹æ•°é‡
+pitch_value_true=zeros(1,NP);%%åˆå§‹åŒ–ä¿¯ä»°è§’æ•°æ®
+%%ä¿¯ä»°è§’æƒ©ç½šå€¼ä¸Žä¿¯ä»°è§’ï¼ˆå•ä½ä¸ºåº¦ï¼‰
 pun_1=500;
 pun_2=1000;
 degree_1=45;
 degree_2=60;
-%%¼ÆËã²¿·Ö
- for k=1:1:NP
+%%è®¡ç®—éƒ¨åˆ†
+for k=1:1:NP
     for i=1:1:pathnum-1
-        %%¼ÆËãµ×±ß³¤¶È
-         length=sqrt(((path(k,i+1,1)-path(k,i,1))*map.gap)^2+((path(k,i+1,2)-path(k,i,2))*map.gap)^2);
-         high=abs(path(k,i+1,3)-path(k,i,3));%%¼ÆËã¸ß¶È±ä»¯µÄ¾ø¶ÔÖµ
-         tmp=atand(high/length);
-         if(tmp>degree_2)
-         tmp=tmp+pun_2;
-         elseif (tmp>degree_1)
-         tmp=tmp+pun_1;
+        %%è®¡ç®—åº•è¾¹é•¿åº¦
+        length=sqrt(((path(k,i+1,1)-path(k,i,1))*map.gap)^2+((path(k,i+1,2)-path(k,i,2))*map.gap)^2);
+        high=abs(path(k,i+1,3)-path(k,i,3));%%è®¡ç®—é«˜åº¦å˜åŒ–çš„ç»å¯¹å€¼
+        tmp=atand(high/length);
+        
+        if length==0&&high==0          %åˆ¤æ–­å½“å‰åŽä¸¤ç‚¹é‡åˆæ—¶ï¼Œè§’åº¦ä¸º0
+         tmp=0;
          end
-         pitch_value_true(k)=pitch_value_true(k)+tmp;
+        
+        if(tmp>degree_2)
+            tmp=tmp+pun_2;
+        elseif (tmp>degree_1)
+            tmp=tmp+pun_1;
+        end
+        pitch_value_true(k)=pitch_value_true(k)+tmp;
     end
 end
 pitch_value_true=real(pitch_value_true);

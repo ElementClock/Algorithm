@@ -1,17 +1,18 @@
 function [child_path]=selection(fit_value,path)
-%%Ñ¡Ôñ
-%%fit_valueÊÇÊÊÓ¦¶È£¬pathÊÇÂ·¾¶
+%%é€‰æ‹©
+%%fit_valueæ˜¯é€‚åº”åº¦ï¼Œpathæ˜¯è·¯å¾„
 NP=size(path,1);
 pathnum=size(path,2);
 child_path=zeros(NP,pathnum,3);
 fitness=fit_value;
-%%ÂÖÅÌ¶Ä·½·¨
-totalfit=sum(fitness);%%½«ËùÓĞÊÊÓ¦¶ÈÇóºÍ
-p_fit=fitness/totalfit;%%Çó³öÊÊÓ¦¶È¸÷¸ÅÂÊ´óĞ¡
-p_fit=cumsum(p_fit);%%½«p_fit¸ÅÂÊÇóºÍ
-rnum = sort(rand(NP, 1));
+%%è½®ç›˜èµŒæ–¹æ³•
+totalfit=sum(fitness);%%å°†æ‰€æœ‰é€‚åº”åº¦æ±‚å’Œ
+p_fit=fitness/totalfit;%%æ±‚å‡ºé€‚åº”åº¦å„æ¦‚ç‡å¤§å°
+p_fit=cumsum(p_fit);%%å°†p_fitæ¦‚ç‡æ±‚å’Œ
+rnum = sort(rand(NP, 1));%ç”ŸæˆNPè¡Œ1åˆ—çš„éšæœºæ•°ï¼Œç„¶åæŒ‰é¡ºåºæ’åˆ—
 i=1;j=1;
-while(i<=NP)
+% while(i<=NP&&j<=NP)
+    while(i<=NP)         %æŒ‰ç…§ç®—æ³•è¿­ä»£æ¥çœ‹ï¼Œé€‚åº”åº¦æ˜¯ä¸æ–­æå‡çš„ï¼Œæ— éœ€è€ƒè™‘jè¶…è¿‡NP
     if rnum(i)<p_fit(j)
         child_path(i,:,:)=path(j,:,:);
         i=i+1;

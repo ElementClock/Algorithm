@@ -1,38 +1,34 @@
 function [yaw_value_true,yaw_value]=cal_yaw_value(path)
-NP=size(path,1);%%ÖÖÈºÊıÁ¿
-pathnum=size(path,2);%%Â·¾¶µãÊıÁ¿
-yaw_value_true=zeros(1,NP);%%³õÊ¼»¯
-%%³Í·£¶ÈpunÓëÆ«º½¶È(µ¥Î»Îª¶È)
-pun_1=500;%%´óÓÚ45¶ÈĞ¡ÓÚ60¶È
-pun_2=1000;%%´óÓÚ60¶È
+NP=size(path,1);%%ç§ç¾¤æ•°é‡
+pathnum=size(path,2);%%è·¯å¾„ç‚¹æ•°é‡
+yaw_value_true=zeros(1,NP);%%åˆå§‹åŒ–
+%%æƒ©ç½šåº¦punä¸åèˆªåº¦(å•ä½ä¸ºåº¦)
+pun_1=500;%%å¤§äº45åº¦å°äº60åº¦
+pun_2=1000;%%å¤§äº60åº¦
 degree_1=45;
 degree_2=60;
 for k=1:1:NP
-%     %%ÎÒ×ĞÏ¸ÏëÁËÏÂ£¬ÆäÊµµÚÒ»¸öµã²»ĞèÒª¼ÆËãÆ«×ª½Ç¡£¡£µÚÒ»¸öµãÊÇÖ±Ïß·ÉµÄ
-%     yaw_value(k)=atand((path(k,1,2)-path(k,2,2))/(path(k,1,1)-path(k,2,1)));
-%     if(yaw_value(k)>=degree_1)
-%         yaw_value(k)=yaw_value(k)+pun_1;
-%     elseif (yaw_value(k)>=degree_2)
-%         yaw_value(k)=yaw_value(k)+pun_2;
-%     end
-    %%³õÊ¼Æ«×ª½Ç¼ÆËãÍê³É
+    %%åˆå§‹åè½¬è§’è®¡ç®—å®Œæˆ
     for i=2:1:pathnum-1
-        %%µÚÒ»¸öÏòÁ¿
+        %%ç¬¬ä¸€ä¸ªå‘é‡
         x1=path(k,i,1)-path(k,i-1,1);
         y1=path(k,i,2)-path(k,i-1,2);
-        %%µÚ¶ş¸öÏòÁ¿
+        %%ç¬¬äºŒä¸ªå‘é‡
         x2=path(k,i+1,1)-path(k,i,1);
         y2=path(k,i+1,2)-path(k,i,2);
-        %%¼ÆËãÁ½ÏòÁ¿¼Ğ½Ç
-        tmp=acosd((x1*x2+y1*y2)/(sqrt(x1^2+y1^2)*sqrt(x2^2+y2^2)));%%ÁÙÊ±±äÁ¿
+        %%è®¡ç®—ä¸¤å‘é‡å¤¹è§’
+         tmp=acosd((x1*x2+y1*y2)/(sqrt(x1^2+y1^2)*sqrt(x2^2+y2^2)));%%ä¸´æ—¶å˜é‡
+         if (x1==0&&y1==0)||(x2==0&&y2==0)          %åˆ¤æ–­å½“å‰åä¸¤ç‚¹é‡åˆæ—¶ï¼Œè§’åº¦ä¸º0
+         tmp=0;
+         end
         if(tmp>degree_2)
-        tmp=tmp+pun_2;
+            tmp=tmp+pun_2;
         elseif (tmp>degree_1)
-        tmp=tmp+pun_1;
+            tmp=tmp+pun_1;
         end
         yaw_value_true(k)=yaw_value_true(k)+tmp;
     end
 end
-yaw_value_true=real(yaw_value_true);
+yaw_value_true=real(yaw_value_true);%real å¤æ•°çš„å®éƒ¨
 yaw_value=(max(yaw_value_true)-yaw_value_true+10^-7)/(max(yaw_value_true)-min(yaw_value_true)+10^-7);
 end

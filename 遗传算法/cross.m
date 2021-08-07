@@ -6,17 +6,17 @@ pathnum=size(path,2);%%路径点数量
 tmp=zeros(1,pathnum,3);%%中间变量
 child_path=path;
 for n=1:1:NP
-%     %%单点交叉
-%         if rand(1,1)<=pc
-%         i=randi([1,NP],1,1);
-%         j=randi([1,NP],1,1);
-%         k=randi([2 pathnum-1],1,1);
-%         tmp(1,:,:)=path(i,:,:);
-%         child_path(i,k:1:pathnum,:)=child_path(j,k:1:pathnum,:);
-%         child_path(i,k:1:pathnum,:)=tmp(1,k:1:pathnum,:);
-%         end
-        %%两点交叉
-    if rand(1,1)<=pc
+    %     %%单点交叉
+    %         if rand(1,1)<=pc
+    %         i=randi([1,NP],1,1);
+    %         j=randi([1,NP],1,1);
+    %         k=randi([2 pathnum-1],1,1);
+    %         tmp(1,:,:)=path(i,:,:);
+    %         child_path(i,k:1:pathnum,:)=child_path(j,k:1:pathnum,:);
+    %         child_path(i,k:1:pathnum,:)=tmp(1,k:1:pathnum,:);
+    %         end
+    %%两点交叉
+    if rand(1)<=pc
         i=randi([1 NP],1,1);%%选择第一个子类
         j=randi([1 NP],1,1);%%选择第二个子类
         k1=randi([1 pathnum],1,1);%%选择第一个路径点
