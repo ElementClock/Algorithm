@@ -1,7 +1,7 @@
 function  MakeData()
-%%%%%%%%Make Data of Map%%%%%%%%
+%制作地图的数据
 load ('TerrainData.mat');
-%%%%%%Define The 2-D Map Array%%%%%
+%Define The 2-D Map Array
 MAX_X = 100;
 MAX_Y = 100;
 MAX_Z = 50;
@@ -9,69 +9,81 @@ Cut_Data = Final_Data(301:400,101:200);
 mesh(double(Cut_Data));
 MAX_Final_Data = max(max(Cut_Data));
 MIN_Final_Data = min(min(Cut_Data));
+%此处是缩小计算范围，因为Y轴的起始点不是从0开始
 for i=1:100
     for j=1:100
         New_Data(i,j) = ceil((Cut_Data(i,j)-MIN_Final_Data)/100);
+        %ceil 向正无穷取整，取整是为了定位坐标
         Display_Data(i,j) = (Cut_Data(i,j)-MIN_Final_Data)/100;
     end
 end
-%%%%%%Map Matrix Initialization%%%%%%
-MAP=2*(ones(MAX_X,MAX_Y,MAX_Z));
-% Obtain Obstacle, Target and Robot Position
-% Initialize the MAP with input values
+
+
+%映射矩阵初始化，因为空间的值设定为2
+% 获取障碍物、目标和机器人位置
+% 用输入值初始化 MAP
 % Obstacle=-1,Target = 0,Robot=1,Space=2
-%%%%%%%Make Random Terrain Data%%%%%%%
+%制作随机地形数据
+MAP=2*(ones(MAX_X,MAX_Y,MAX_Z));
 for i=1:MAX_X
     for j=1:MAX_Y
         Z_UpData = New_Data(i,j);
         for z = 1:Z_UpData
-            MAP(i,j,z) = -1;
+            MAP(i,j,z) = -1;           %填充地表以下的都是障碍
         end
     end
 end
+
+
+%将所有障碍放在关闭列表中
 CLOSED=[];
-%Put all obstacles on the Closed list
-k=1;%Dummy counter
+k=1;%计数器
 for i=1:MAX_X
     for j=1:MAX_Y
         Z_UpData = New_Data(i,j);
         for z = 1:Z_UpData
-            CLOSED(k,1)=i; 
+            CLOSED(k,1)=i;
             CLOSED(k,2)=j;
             CLOSED(k,3)=z;
             k=k+1;
-        end        
+        end
     end
 end
-%%%%%%%%%输入禁飞区信息
+%输入禁飞区信息
 c2=size(CLOSED,1);
 for i_z=1:20
     for i_x=1:100
         for i_y=1:100
+            
+            
             flag = 1;
-            Length = (i_x-30)^2 + (i_y-30)^2;            
+            Length = (i_x-30)^2 + (i_y-30)^2;
             for c1=1:c2
                 if (i_x == CLOSED(c1,1) && i_y == CLOSED(c1,2) && i_z == CLOSED(c1,3))
                     flag = 0;
                 end
             end
-            if Length <= 25 & flag == 1
+            
+            if Length <= 25 && flag == 1
+                %当距离小于5且当前点不为障碍时（即为地表之上时），设置为障碍
                 CLOSED(c2+1,1)=i_x;
                 CLOSED(c2+1,2)=i_y;
                 CLOSED(c2+1,3)=i_z;
                 c2 = c2+1;
             end
+            
+            
         end
     end
 end
-%%%%%%%%%输入异常气象区域信息
+%输入异常气象区域信息
 % k = 1;
 % c3 = size(CLOSED,1);
 % for i_z=1:10
 %     for i_x=1:100
 %         for i_y=1:100
 %             flag = 1;
-%             Length = (i_x-60)^2 + (i_y-30)^2;            
+%             Length = (i_x-60)^2 + (i_y-30)^2;
 %             for c1=1:c3
 %                 if (i_x == CLOSED(c1,1) && i_y == CLOSED(c1,2) && i_z == CLOSED(c1,3))
 %                     flag = 0;
