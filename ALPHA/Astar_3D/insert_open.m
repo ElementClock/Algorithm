@@ -1,9 +1,9 @@
 function new_row = insert_open(xval,yval,zval,parent_xval,parent_yval,parent_zval,hn,gn,fn)
-%Function to Populate the OPEN LIST
-%OPEN LIST FORMAT
-%--------------------------------------------------------------------------
-%IS ON LIST 1/0 |X val |Y val |Z val |Parent X val |Parent Y val |Parent Z val |h(n) |g(n)|f(n)|
-%-------------------------------------------------------------------------
+% 填充 OPEN LIST 的函数
+%打开列表格式
+%------------------------------------------------- -------------------------
+%IS 在列表 1/0 |X val |Y val |Z val |父 X val |父 Y val |父 Z val |h(n) |g(n)|f(n)|
+%------------------------------------------------- ------------------------
 new_row=[1,10];
 new_row(1,1)=1;
 new_row(1,2)=xval;

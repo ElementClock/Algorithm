@@ -1,8 +1,6 @@
 function i_min = min_fn(OPEN,OPEN_COUNT,xTarget,yTarget,zTarget)
-%Function to return the Node with minimum fn
-% This function takes the list OPEN as its input and returns the index of the
-% node that has the least cost
-
+%函数返回具有最小 fn 的节点
+% 此函数以列表 OPEN 作为其输入，并返回成本最低的节点的索引
  temp_array=[];
  k=1;
  flag=0;
