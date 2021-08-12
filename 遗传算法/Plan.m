@@ -17,14 +17,14 @@ hmax=max(max(map.Z));
 Threat.point1=[200 500];
 Threat.length1=400;
 Threat.width1=20;%此处的10实际为10*30为300m
-Threat.tall1=400;
+Threat.tall1=600;
 map=rectangleThreat(Threat.point1,Threat.length1,Threat.width1,Threat.tall1,map);
-map=rectangleThreat([500 450],20,200,400,map);
+map=rectangleThreat([500 450],20,200,600,map);
 Threat.point2=[200 300];
 Threat.radius2=10;                          %此处的100实际为100*30为3000m
-Threat.tall2=200;
+Threat.tall2=600;
 map=roundThreat(Threat.point2,Threat.radius2,Threat.tall2,map);
-map=roundThreat([500 700],20,500,map);
+map=roundThreat([500 700],20,600,map);
 
 % save(['C:\Users\Alpha\Desktop\GitHub\mav\platform_code\map.mat'],'map');
 % %飞行航迹威胁   编队控制
@@ -49,8 +49,8 @@ map=roundThreat([500 700],20,500,map);
 
 
 %% 初始点部分
-Departure=[700 10];
-Destination=[500 1000];                       %这两个是接口,此处的坐标为在30m每格高程图下的坐标，非实际的1m的坐标
+Departure=[10 10];
+Destination=[700 1000];                       %这两个是接口,此处的坐标为在30m每格高程图下的坐标，非实际的1m的坐标
 start_x=Departure(1);
 start_y=Departure(2);
 end_x=Destination(1);
@@ -70,7 +70,7 @@ r=0.95;                                     %降温系数t0=r*t0
 %% 遗传算法部分参数
 NP=500;                                  %种群数量
 max_gen=ceil(log(t/t0)/log(r));    %种群进化次数 %Y = ceil(X)将 的每个元素四舍五入X到最接近的大于或等于该元素的整数。
-pathnum=50;                             %路径点个数
+pathnum=100;                             %路径点个数
 pc0=0.95;                                    %交叉概率
 pv0=0.95;                                    %变异概率
 pcmin=0.1;
