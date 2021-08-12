@@ -4,18 +4,18 @@ WayPoints = [];
 WayPointsAll = [];
 OPEN_COUNT = 0;
 OPEN_COUNT_ALL = 0;
-%µØĞÎÊı¾İÌî³ä
+%åœ°å½¢æ•°æ®å¡«å……
 Cut_Data = Final_Data(301:400,101:200);
 MIN_Final_Data = min(min(Cut_Data));
 
-tic%Ëã·¨¿ªÊ¼
+tic%ç®—æ³•å¼€å§‹
 timerVal = tic
 [WayPoints,OPEN_COUNT] = A_star(MAX_X,MAX_Y,MAX_Z,20,20,7,90,70,5,MAP,CLOSED,Display_Data);
 toc(timerVal)
-%Ëã·¨½áÊø
+%ç®—æ³•ç»“æŸ
 
 elapsedTime = toc(timerVal)
-%»æÍ¼
+%ç»˜å›¾
 figure(1)
 axis([1 MAX_X 1 MAX_Y 1 MAX_Z]);
 plot3(WayPoints(:,1),WayPoints(:,2),WayPoints(:,3),'b','linewidth',2);
@@ -26,11 +26,11 @@ plot3(90,70,5,'^');
 set(gca,'xticklabel','');
 set(gca,'yticklabel','');
 set(gca,'zticklabel',{'2000','4000','6000','4000','5000','6000','7000','8000','9000','10000'});
-xlabel('Î³¶È');
-ylabel('¾­¶È');
-zlabel('¸ß¶È£¨m£©');
+xlabel('çº¬åº¦');
+ylabel('ç»åº¦');
+zlabel('é«˜åº¦ï¼ˆmï¼‰');
 grid on
-%»æÖÆ´¹Ö±ÆÊÃæº½Í¼
+%ç»˜åˆ¶å‚ç›´å‰–é¢èˆªå›¾
 figure(2)
 X_WayPoints = WayPoints(end:-1:1,1);
 Y_WayPoints = WayPoints(end:-1:1,2);
@@ -68,11 +68,11 @@ Y_fill_low = zeros(Y_size(1,1),Y_size(1,2));
 X_fillfor = [fliplr(X_fill),X_fill];
 Y_fillfor = [fliplr(Y_fill_low),Y_fill];
 h3 = fill(X_fillfor,Y_fillfor,'c','FaceAlpha',1,'EdgeAlpha',0.3,'EdgeColor','k');
-hleg = legend([h1,h2,h3],'¹æ»®º½¼£´¹Ö±ÆÊÃæÍ¶Ó°','µÍ¿Õ·ÉĞĞÉÏ±ß½ç','µØĞÎ´¹Ö±ÆÊÃæ');
+hleg = legend([h1,h2,h3],'è§„åˆ’èˆªè¿¹å‚ç›´å‰–é¢æŠ•å½±','ä½ç©ºé£è¡Œä¸Šè¾¹ç•Œ','åœ°å½¢å‚ç›´å‰–é¢');
 set(hleg,'Location','NorthWest','Fontsize',8);
 hold off
-xlabel('·ÉĞĞÂ·³Ì£¨km£©');
-ylabel('·ÉĞĞ¸ß¶È£¨m£©');
+xlabel('é£è¡Œè·¯ç¨‹ï¼ˆkmï¼‰');
+ylabel('é£è¡Œé«˜åº¦ï¼ˆmï¼‰');
 xmaxTeam = lat_lonDisReal(1,num+1);
 xmax = xmaxTeam(1,1);
 axis([0 xmax 2500 5500]);

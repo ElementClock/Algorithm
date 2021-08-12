@@ -1,14 +1,14 @@
 function exp_array=expand_array(nodef_x,nodef_y,nodef_z,node_x,node_y,node_z,hn,xTarget,yTarget,zTarget,CLOSED,MAX_X,MAX_Y,MAX_Z,Display_Data)
-%º¯Êý·µ»ØÀ©Õ¹Êý×é
-%´Ëº¯Êý²ÉÓÃÒ»¸ö½Úµã²¢·µ»ØÀ©Õ¹ºóµÄºó¼ÌÁÐ±í£¬ÒÔ¼°¼ÆËã³öµÄ fn Öµ¡£
-%±ê×¼ÊÇÃ»ÓÐºó¼ÌÕßÔÚ CLOSED ÁÐ±íÖÐ¡£
+%å‡½æ•°è¿”å›žæ‰©å±•æ•°ç»„
+%æ­¤å‡½æ•°é‡‡ç”¨ä¸€ä¸ªèŠ‚ç‚¹å¹¶è¿”å›žæ‰©å±•åŽçš„åŽç»§åˆ—è¡¨ï¼Œä»¥åŠè®¡ç®—å‡ºçš„ fn å€¼ã€‚
+%æ ‡å‡†æ˜¯æ²¡æœ‰åŽç»§è€…åœ¨ CLOSED åˆ—è¡¨ä¸­ã€‚
 %   load ('MapData.mat');
 exp_array=[];
 exp_count=1;
 c2=size(CLOSED,1);%Number of elements in CLOSED including the zeros
 k_x = node_x - nodef_x;
 k_y = node_y - nodef_y;
-%%%%%%%%×´¿ö1
+%%%%%%%%çŠ¶å†µ1
 if (k_x == 1&k_y == 0)|(k_x == 0&k_y == 0)
     for k= 1
         for j= 1:-1:-1
@@ -18,7 +18,7 @@ if (k_x == 1&k_y == 0)|(k_x == 0&k_y == 0)
                 s_y = node_y+j;
                 s_z = node_z+z;
                 if( (s_x >0 && s_x <=MAX_X) && (s_y >0 && s_y <=MAX_Y) && (s_z >0 && s_z <=MAX_Z))%node within array bound
-                    flag=1;                     %ÊÇ·ñÔÚCLOSEDÁÐ±í±êÊ¶Îª
+                    flag=1;                     %æ˜¯å¦åœ¨CLOSEDåˆ—è¡¨æ ‡è¯†ä¸º
                     for c1=1:c2
                         if(s_x == CLOSED(c1,1) && s_y == CLOSED(c1,2) && s_z == CLOSED(c1,3))
                             flag=0;
@@ -57,7 +57,7 @@ if (k_x == 1&k_y == 0)|(k_x == 0&k_y == 0)
         end%End of k for loop
     end
 end
-%%%%%%%%×´¿ö2
+%%%%%%%%çŠ¶å†µ2
 if (k_x == 1&k_y == -1)
     for k= 1:-1:0
         for j= 0:-1:-1
@@ -67,7 +67,7 @@ if (k_x == 1&k_y == -1)
                     s_y = node_y+j;
                     s_z = node_z+z;
                     if( (s_x >0 && s_x <=MAX_X) && (s_y >0 && s_y <=MAX_Y) && (s_z >0 && s_z <=MAX_Z))%node within array bound
-                        flag=1;                     %ÊÇ·ñÔÚCLOSEDÁÐ±í±êÊ¶Îª
+                        flag=1;                     %æ˜¯å¦åœ¨CLOSEDåˆ—è¡¨æ ‡è¯†ä¸º
                         for c1=1:c2
                             if(s_x == CLOSED(c1,1) && s_y == CLOSED(c1,2) && s_z == CLOSED(c1,3))
                                 flag=0;
@@ -106,7 +106,7 @@ if (k_x == 1&k_y == -1)
         end%End of k for loop
     end
 end
-%%%%%%%%×´¿ö3
+%%%%%%%%çŠ¶å†µ3
 if (k_x == 1&k_y == 1)
     for k= 1:-1:0
         for j= 1:-1:0
@@ -116,7 +116,7 @@ if (k_x == 1&k_y == 1)
                     s_y = node_y+j;
                     s_z = node_z+z;
                     if( (s_x >0 && s_x <=MAX_X) && (s_y >0 && s_y <=MAX_Y) && (s_z >0 && s_z <=MAX_Z))%node within array bound
-                        flag=1;                     %ÊÇ·ñÔÚCLOSEDÁÐ±í±êÊ¶Îª
+                        flag=1;                     %æ˜¯å¦åœ¨CLOSEDåˆ—è¡¨æ ‡è¯†ä¸º
                         for c1=1:c2
                             if(s_x == CLOSED(c1,1) && s_y == CLOSED(c1,2) && s_z == CLOSED(c1,3))
                                 flag=0;
@@ -155,7 +155,7 @@ if (k_x == 1&k_y == 1)
         end%End of k for loop
     end
 end
-%%%%%%%%×´¿ö4
+%%%%%%%%çŠ¶å†µ4
 if (k_x == 0&k_y == 1)
     for k= 1:-1:-1
         for j= 1
@@ -165,7 +165,7 @@ if (k_x == 0&k_y == 1)
                     s_y = node_y+j;
                     s_z = node_z+z;
                     if( (s_x >0 && s_x <=MAX_X) && (s_y >0 && s_y <=MAX_Y) && (s_z >0 && s_z <=MAX_Z))%node within array bound
-                        flag=1;                     %ÊÇ·ñÔÚCLOSEDÁÐ±í±êÊ¶Îª
+                        flag=1;                     %æ˜¯å¦åœ¨CLOSEDåˆ—è¡¨æ ‡è¯†ä¸º
                         for c1=1:c2
                             if(s_x == CLOSED(c1,1) && s_y == CLOSED(c1,2) && s_z == CLOSED(c1,3))
                                 flag=0;
@@ -204,7 +204,7 @@ if (k_x == 0&k_y == 1)
         end%End of k for loop
     end
 end
-%%%%%%%%×´¿ö5
+%%%%%%%%çŠ¶å†µ5
 if (k_x == 0&k_y == -1)
     for k= 1:-1:-1
         for j= -1
@@ -214,7 +214,7 @@ if (k_x == 0&k_y == -1)
                     s_y = node_y+j;
                     s_z = node_z+z;
                     if( (s_x >0 && s_x <=MAX_X) && (s_y >0 && s_y <=MAX_Y) && (s_z >0 && s_z <=MAX_Z))%node within array bound
-                        flag=1;                     %ÊÇ·ñÔÚCLOSEDÁÐ±í±êÊ¶Îª
+                        flag=1;                     %æ˜¯å¦åœ¨CLOSEDåˆ—è¡¨æ ‡è¯†ä¸º
                         for c1=1:c2
                             if(s_x == CLOSED(c1,1) && s_y == CLOSED(c1,2) && s_z == CLOSED(c1,3))
                                 flag=0;
@@ -253,7 +253,7 @@ if (k_x == 0&k_y == -1)
         end%End of k for loop
     end
 end
-%%%%%%%%×´¿ö6
+%%%%%%%%çŠ¶å†µ6
 if (k_x == -1&k_y == 1)
     for k= 0:-1:-1
         for j= 1:-1:0
@@ -263,7 +263,7 @@ if (k_x == -1&k_y == 1)
                     s_y = node_y+j;
                     s_z = node_z+z;
                     if( (s_x >0 && s_x <=MAX_X) && (s_y >0 && s_y <=MAX_Y) && (s_z >0 && s_z <=MAX_Z))%node within array bound
-                        flag=1;                     %ÊÇ·ñÔÚCLOSEDÁÐ±í±êÊ¶Îª
+                        flag=1;                     %æ˜¯å¦åœ¨CLOSEDåˆ—è¡¨æ ‡è¯†ä¸º
                         for c1=1:c2
                             if(s_x == CLOSED(c1,1) && s_y == CLOSED(c1,2) && s_z == CLOSED(c1,3))
                                 flag=0;
@@ -302,7 +302,7 @@ if (k_x == -1&k_y == 1)
         end%End of k for loop
     end
 end
-%%%%%%%%×´¿ö7
+%%%%%%%%çŠ¶å†µ7
 if (k_x == -1&k_y == 0)
     for k= -1
         for j= 1:-1:-1
@@ -312,7 +312,7 @@ if (k_x == -1&k_y == 0)
                     s_y = node_y+j;
                     s_z = node_z+z;
                     if( (s_x >0 && s_x <=MAX_X) && (s_y >0 && s_y <=MAX_Y) && (s_z >0 && s_z <=MAX_Z))%node within array bound
-                        flag=1;                     %ÊÇ·ñÔÚCLOSEDÁÐ±í±êÊ¶Îª
+                        flag=1;                     %æ˜¯å¦åœ¨CLOSEDåˆ—è¡¨æ ‡è¯†ä¸º
                         for c1=1:c2
                             if(s_x == CLOSED(c1,1) && s_y == CLOSED(c1,2) && s_z == CLOSED(c1,3))
                                 flag=0;
@@ -351,7 +351,7 @@ if (k_x == -1&k_y == 0)
         end%End of k for loop
     end
 end
-%%%%%%%%×´¿ö8
+%%%%%%%%çŠ¶å†µ8
 if (k_x == -1&k_y == -1)
     for k= 0:-1:-1
         for j= 0:-1:-1
@@ -361,7 +361,7 @@ if (k_x == -1&k_y == -1)
                     s_y = node_y+j;
                     s_z = node_z+z;
                     if( (s_x >0 && s_x <=MAX_X) && (s_y >0 && s_y <=MAX_Y) && (s_z >0 && s_z <=MAX_Z))%node within array bound
-                        flag=1;                     %ÊÇ·ñÔÚCLOSEDÁÐ±í±êÊ¶Îª
+                        flag=1;                     %æ˜¯å¦åœ¨CLOSEDåˆ—è¡¨æ ‡è¯†ä¸º
                         for c1=1:c2
                             if(s_x == CLOSED(c1,1) && s_y == CLOSED(c1,2) && s_z == CLOSED(c1,3))
                                 flag=0;

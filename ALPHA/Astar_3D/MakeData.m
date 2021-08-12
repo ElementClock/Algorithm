@@ -43,7 +43,7 @@ for i=1:MAX_X
         end        
     end
 end
-%%%%%%%%%ÊäÈë½û·ÉÇøÐÅÏ¢
+%%%%%%%%%è¾“å…¥ç¦é£žåŒºä¿¡æ¯
 c2=size(CLOSED,1);
 for i_z=1:20
     for i_x=1:100
@@ -64,7 +64,7 @@ for i_z=1:20
         end
     end
 end
-%%%%%%%%%ÊäÈëÒì³£ÆøÏóÇøÓòÐÅÏ¢
+%%%%%%%%%è¾“å…¥å¼‚å¸¸æ°”è±¡åŒºåŸŸä¿¡æ¯
 % k = 1;
 % c3 = size(CLOSED,1);
 % for i_z=1:10

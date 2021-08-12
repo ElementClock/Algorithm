@@ -1,20 +1,20 @@
-%ÓÃÓÚËã·¨µÄÁĞ±í
+%ç”¨äºç®—æ³•çš„åˆ—è¡¨
 function [WayPoints,OPEN_COUNT] = A_star(MAX_X,MAX_Y,MAX_Z,xval,yval,zval,xTarget,yTarget,zTarget,MAP,CLOSED,Display_Data,MIN_Final_Data)
-%ÉèÖÃ×îÓÅÂ·¾¶½Úµã
+%è®¾ç½®æœ€ä¼˜è·¯å¾„èŠ‚ç‚¹
 WayPoints = [];
-%ÉèÖÃ¿ªÊ¼½Úµã
+%è®¾ç½®å¼€å§‹èŠ‚ç‚¹
 xStart = xval;
 yStart = yval;
 zStart = zval;
-%ÓÃÓÚËã·¨µÄÁĞ±í
+%ç”¨äºç®—æ³•çš„åˆ—è¡¨
 %OPEN LIST STRUCTURE
-%IS ON LIST 1/0 | X val | Y val | Parent X val | Parent Y val | h(n) | g(n) Æô·¢º¯Êı| f(n)|
+%IS ON LIST 1/0 | X val | Y val | Parent X val | Parent Y val | h(n) | g(n) å¯å‘å‡½æ•°| f(n)|
 OPEN=[];
 %CLOSED LIST STRUCTURE
 %X val | Y val | Z val |
 % CLOSED=zeros(MAX_VAL,2);
 CLOSED_COUNT=size(CLOSED,1);
-%½«ÆğÊ¼½ÚµãÉèÖÃÎªµÚÒ»¸ö½Úµã
+%å°†èµ·å§‹èŠ‚ç‚¹è®¾ç½®ä¸ºç¬¬ä¸€ä¸ªèŠ‚ç‚¹
 xNode=xval;
 yNode=yval;
 zNode=zval;
@@ -24,7 +24,7 @@ zFNode = zval;
 OPEN_COUNT=1;
 path_cost=0;
 goal_distance=distanced(xNode,yNode,zNode,xTarget,yTarget,zTarget);
-%insert_open(µ±Ç°x,µ±Ç°y,¸¸½Úµãx,¸¸½Úµãy,Â·¾¶h(n),Æô·¢g(n),f(n))
+%insert_open(å½“å‰x,å½“å‰y,çˆ¶èŠ‚ç‚¹x,çˆ¶èŠ‚ç‚¹y,è·¯å¾„h(n),å¯å‘g(n),f(n))
 OPEN(OPEN_COUNT,:)=insert_open(xNode,yNode,zNode,xNode,yNode,zNode,path_cost,goal_distance,goal_distance);
 OPEN(OPEN_COUNT,1)=0;
 CLOSED_COUNT=CLOSED_COUNT+1;
@@ -32,21 +32,21 @@ CLOSED(CLOSED_COUNT,1)=xNode;
 CLOSED(CLOSED_COUNT,2)=yNode;
 CLOSED(CLOSED_COUNT,3)=zNode;
 NoPath=1;
-%ÊÇ·ñÓĞÂ·¾¶ÅĞ¶Ï·û1ÓĞ£¬0ÎŞ
+%æ˜¯å¦æœ‰è·¯å¾„åˆ¤æ–­ç¬¦1æœ‰ï¼Œ0æ— 
 % START ALGORITHM
 while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)
-    %expand_array(¸¸½Úµãx,¸¸½Úµãy,µ±Ç°½Úµãx,µ±Ç°½Úµãy,h(n),Ä¿±êx,Ä¿±êy,CLOSED,±íX,±íy,µØĞÎÉÏ½çy)
-    %·µ»ØÖµexp_array£ºÀ©Õ¹x,À©Õ¹y,À©Õ¹z,h(n),g(n),f(n)
+    %expand_array(çˆ¶èŠ‚ç‚¹x,çˆ¶èŠ‚ç‚¹y,å½“å‰èŠ‚ç‚¹x,å½“å‰èŠ‚ç‚¹y,h(n),ç›®æ ‡x,ç›®æ ‡y,CLOSED,è¡¨X,è¡¨y,åœ°å½¢ä¸Šç•Œy)
+    %è¿”å›å€¼exp_arrayï¼šæ‰©å±•x,æ‰©å±•y,æ‰©å±•z,h(n),g(n),f(n)
     exp_array=expand_array(xFNode,yFNode,zFNode,xNode,yNode,zNode,path_cost,xTarget,yTarget,zTarget,CLOSED,MAX_X,MAX_Y,MAX_Z,Display_Data);
     exp_count=size(exp_array,1);
-    %Ê¹ÓÃºó¼Ì½Úµã´ò¿ª¸üĞÂÁĞ±í
-    %´ò¿ªÁĞ±í¸ñÊ½
+    %ä½¿ç”¨åç»§èŠ‚ç‚¹æ‰“å¼€æ›´æ–°åˆ—è¡¨
+    %æ‰“å¼€åˆ—è¡¨æ ¼å¼
     %IS ON LIST 1/0 |X val |Y val |Parent X val |Parent Y val |h(n) |g(n)|f(n)|
-    %À©Õ¹ÕóÁĞ¸ñÊ½
+    %æ‰©å±•é˜µåˆ—æ ¼å¼
     %|X val |Y val ||h(n) |g(n)|f(n)|
     for i=1:exp_count
         flag=0;             
-        %ÅĞ¶Ïexp_arrayÖĞ½ÚµãÔÚ²»ÔÚOPENÁĞ±íÖĞ£¬0²»ÔÚ£¬1ÔÚ
+        %åˆ¤æ–­exp_arrayä¸­èŠ‚ç‚¹åœ¨ä¸åœ¨OPENåˆ—è¡¨ä¸­ï¼Œ0ä¸åœ¨ï¼Œ1åœ¨
         for j=1:OPEN_COUNT
             if(exp_array(i,1) == OPEN(j,2) && exp_array(i,2) == OPEN(j,3) && exp_array(i,3) == OPEN(j,4) )
                 OPEN(j,10)=min(OPEN(j,10),exp_array(i,6)); 
@@ -59,10 +59,10 @@ while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)
                     OPEN(j,8)=exp_array(i,4);
                     OPEN(j,9)=exp_array(i,5);
                 end
-                %×îĞ¡ fn ¼ì²é½áÊø
+                %æœ€å° fn æ£€æŸ¥ç»“æŸ
                 flag=1;
             end
-            %½Úµã¼ì²é½áÊø
+            %èŠ‚ç‚¹æ£€æŸ¥ç»“æŸ
             %         if flag == 1
             %             break;
         end
@@ -71,15 +71,15 @@ while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)
             OPEN_COUNT = OPEN_COUNT+1;
             OPEN(OPEN_COUNT,:)=insert_open(exp_array(i,1),exp_array(i,2),exp_array(i,3),xNode,yNode,zNode,exp_array(i,4),exp_array(i,5),exp_array(i,6));
         end
-        %½«ĞÂÔªËØ²åÈë OPEN ÁĞ±í½áÊø
+        %å°†æ–°å…ƒç´ æ’å…¥ OPEN åˆ—è¡¨ç»“æŸ
     end
     %End of i for
     
     %END OF WHILE LOOP
-    %ÕÒ³ö fn ×îĞ¡µÄ½Úµã
+    %æ‰¾å‡º fn æœ€å°çš„èŠ‚ç‚¹
     index_min_node = min_fn(OPEN,OPEN_COUNT,xTarget,yTarget,zTarget);
     if (index_min_node ~= -1)
-        %½« xNode ºÍ yNode ÉèÖÃÎª fn ×îĞ¡µÄ½Úµã
+        %å°† xNode å’Œ yNode è®¾ç½®ä¸º fn æœ€å°çš„èŠ‚ç‚¹
         xNode=OPEN(index_min_node,2);
         yNode=OPEN(index_min_node,3);
         zNode=OPEN(index_min_node,4);
@@ -87,23 +87,23 @@ while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)
         yFNode=OPEN(index_min_node,6);
         zFNode=OPEN(index_min_node,7);
         path_cost=OPEN(index_min_node,8);
-        %¸üĞÂµ½´ï¸¸½ÚµãµÄ³É±¾
-        %½«½ÚµãÒÆ¶¯µ½ÁĞ±í CLOSED
+        %æ›´æ–°åˆ°è¾¾çˆ¶èŠ‚ç‚¹çš„æˆæœ¬
+        %å°†èŠ‚ç‚¹ç§»åŠ¨åˆ°åˆ—è¡¨ CLOSED
         CLOSED_COUNT=CLOSED_COUNT+1;
         CLOSED(CLOSED_COUNT,1)=xNode;
         CLOSED(CLOSED_COUNT,2)=yNode;
         CLOSED(CLOSED_COUNT,3)=zNode;
         OPEN(index_min_node,1)=0;
     else
-        %Ä¿±ê²»´æÔÚÂ·¾¶£¡£¡
+        %ç›®æ ‡ä¸å­˜åœ¨è·¯å¾„ï¼ï¼
         NoPath=0;
-        %ÍË³öÑ­»·£¡
+        %é€€å‡ºå¾ªç¯ï¼
     end
-    %index_min_node ¼ì²é½áÊø
+    %index_min_node æ£€æŸ¥ç»“æŸ
 end
 %End of While Loop
-%Ò»µ©Ëã·¨ÔËĞĞ ×îÓÅÂ·¾¶ÊÇÍ¨¹ı´Ó×îºóÒ»¸ö½Úµã£¨Èç¹ûËüÊÇÄ¿±ê½Úµã£©¿ªÊ¼
-%È»ºóÊ¶±ğÆä¸¸½ÚµãÖ±µ½µ½´ïÆğÊ¼½ÚµãÀ´Éú³ÉµÄ¡£ÕâÊÇ×îÓÅÂ·¾¶
+%ä¸€æ—¦ç®—æ³•è¿è¡Œ æœ€ä¼˜è·¯å¾„æ˜¯é€šè¿‡ä»æœ€åä¸€ä¸ªèŠ‚ç‚¹ï¼ˆå¦‚æœå®ƒæ˜¯ç›®æ ‡èŠ‚ç‚¹ï¼‰å¼€å§‹
+%ç„¶åè¯†åˆ«å…¶çˆ¶èŠ‚ç‚¹ç›´åˆ°åˆ°è¾¾èµ·å§‹èŠ‚ç‚¹æ¥ç”Ÿæˆçš„ã€‚è¿™æ˜¯æœ€ä¼˜è·¯å¾„
 i=size(CLOSED,1);
 Optimal_path=[];
 xval=CLOSED(i,1);
@@ -117,8 +117,8 @@ i=i+1;
 
 if ( (xval == xTarget) && (yval == yTarget) && (zval == zTarget))
     inode=0;
-    %±éÀúOPEN²¢È·¶¨¸¸½Úµã
-    parent_x=OPEN(node_index(OPEN,xval,yval,zval),5);%node_index ·µ»Ø½ÚµãµÄË÷Òı
+    %éå†OPENå¹¶ç¡®å®šçˆ¶èŠ‚ç‚¹
+    parent_x=OPEN(node_index(OPEN,xval,yval,zval),5);%node_index è¿”å›èŠ‚ç‚¹çš„ç´¢å¼•
     parent_y=OPEN(node_index(OPEN,xval,yval,zval),6);
     parent_z=OPEN(node_index(OPEN,xval,yval,zval),7);
     
@@ -128,7 +128,7 @@ if ( (xval == xTarget) && (yval == yTarget) && (zval == zTarget))
         Optimal_path(i,3) = parent_z;
         %Get the grandparents:-)
         inode=node_index(OPEN,parent_x,parent_y,parent_z);
-        parent_x=OPEN(inode,5);%node_index ·µ»Ø½ÚµãµÄË÷Òı
+        parent_x=OPEN(inode,5);%node_index è¿”å›èŠ‚ç‚¹çš„ç´¢å¼•
         parent_y=OPEN(inode,6);
         parent_z=OPEN(inode,7);
         i=i+1;
