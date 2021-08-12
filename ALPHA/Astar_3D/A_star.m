@@ -23,7 +23,7 @@ yFNode = yval;
 zFNode = zval;
 OPEN_COUNT=1;
 path_cost=0;
-goal_distance=distanced(xNode,yNode,zNode,xTarget,yTarget,zTarget);
+goal_distance=distanced(xNode,yNode,zNode,xTarget,yTarget,zTarget);%计算目标距离
 %insert_open(当前x,当前y,父节点x,父节点y,路径h(n),启发g(n),f(n))
 OPEN(OPEN_COUNT,:)=insert_open(xNode,yNode,zNode,xNode,yNode,zNode,path_cost,goal_distance,goal_distance);
 OPEN(OPEN_COUNT,1)=0;
@@ -31,10 +31,9 @@ CLOSED_COUNT=CLOSED_COUNT+1;
 CLOSED(CLOSED_COUNT,1)=xNode;
 CLOSED(CLOSED_COUNT,2)=yNode;
 CLOSED(CLOSED_COUNT,3)=zNode;
-NoPath=1;
-%是否有路径判断符1有，0无
-% START ALGORITHM
-while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)
+NoPath=1;%是否有路径判断符1有，0无
+% 启动算法
+while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)         %当前点不为终点且判断有路径时
     %expand_array(父节点x,父节点y,当前节点x,当前节点y,h(n),目标x,目标y,CLOSED,表X,表y,地形上界y)
     %返回值exp_array：扩展x,扩展y,扩展z,h(n),g(n),f(n)
     exp_array=expand_array(xFNode,yFNode,zFNode,xNode,yNode,zNode,path_cost,xTarget,yTarget,zTarget,CLOSED,MAX_X,MAX_Y,MAX_Z,Display_Data);
