@@ -1,0 +1,12 @@
+v=ones(1,60)*1;
+alpha=zeros(1,60);
+beta=zeros(1,60);
+Xplot2=[path(pos,:,1);
+             path(pos,:,2);
+             path(pos,:,3);
+           v;
+           alpha;
+           beta;
+  ];
+Xplot2=Xplot2';
+save('out.mat','Xplot2')
