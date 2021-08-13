@@ -1,26 +1,24 @@
 %用于算法的列表
-function [WayPoints,OPEN_COUNT] = A_star(MAX_X,MAX_Y,MAX_Z,xval,yval,zval,xTarget,yTarget,zTarget,MAP,CLOSED,Display_Data,MIN_Final_Data)
+% function [WayPoints,OPEN_COUNT] = A_star(MAX_X,MAX_Y,MAX_Z,xval,yval,zval,xTarget,yTarget,zTarget,MAP,CLOSED,Display_Data,MIN_Final_Data)
+function [WayPoints,OPEN_COUNT] = A_star(MAX_X,MAX_Y,MAX_Z,startPoint,targetPoint,MAP,CLOSED,Display_Data,MIN_Final_Data)
 %设置最优路径节点
 WayPoints = [];
 %设置开始节点
-xStart = xval;
-yStart = yval;
-zStart = zval;
-%用于算法的列表
-%OPEN LIST STRUCTURE
-%IS ON LIST 1/0 | X val | Y val | Parent X val | Parent Y val | h(n) | g(n) 启发函数| f(n)|
+xStart=startPoint(1);
+yStart=startPoint(2);
+zStart=startPoint(3);
+xTarget=targetPoint(1);
+yTarget=targetPoint(2);
+zTarget=targetPoint(3);
 OPEN=[];
-%CLOSED LIST STRUCTURE
-%X val | Y val | Z val |
-% CLOSED=zeros(MAX_VAL,2);
 CLOSED_COUNT=size(CLOSED,1);
 %将起始节点设置为第一个节点
-xNode=xval;
-yNode=yval;
-zNode=zval;
-xFNode = xval;
-yFNode = yval;
-zFNode = zval;
+xNode=xStart;
+yNode=yStart;
+zNode=zStart;
+xFNode = xStart;
+yFNode = yStart;
+zFNode = zStart;
 OPEN_COUNT=1;
 path_cost=0;
 goal_distance=distanced(xNode,yNode,zNode,xTarget,yTarget,zTarget);%计算目标距离

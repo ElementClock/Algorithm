@@ -6,7 +6,7 @@ hold on
 surf(Display_Data(1:100,1:100)','linestyle','none');
 plot3(20,20,7,'*');
 plot3(90,70,5,'^');
-set(gca,'xticklabel','');
+set(gca,'xticklabel','');%故意设置为空
 set(gca,'yticklabel','');
 set(gca,'zticklabel',{'2000','4000','6000','4000','5000','6000','7000','8000','9000','10000'});
 xlabel('纬度');

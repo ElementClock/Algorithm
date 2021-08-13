@@ -3,41 +3,40 @@ figure(1)
 axis([1 MAX_X 1 MAX_Y 1 MAX_Z]);
 plot3(WayPoints(:,1),WayPoints(:,2),WayPoints(:,3),'b','linewidth',2);
 hold on
-surf(Display_Data(1:100,1:100)','linestyle','none');
+mesh(Display_Data(1:100,1:100)');
 plot3(20,20,7,'*');
 plot3(90,70,5,'^');
-set(gca,'xticklabel','');
-set(gca,'yticklabel','');
-set(gca,'zticklabel',{'2000','4000','6000','4000','5000','6000','7000','8000','9000','10000'});
+hold on;
+axis('equal');
 xlabel('纬度');
 ylabel('经度');
 zlabel('高度（m）');
 grid on
-%绘制禁飞区
-[a,z]=ndgrid((0:.05:1)*2*pi,0:.05:20);
-x=5*cos(a)+30;
-y=5*sin(a)+30;
-surf(x,y,z,x*0,'linestyle','none','Facealpha',0.5)
-hold on
-[a,r]=ndgrid((0:.05:1)*2*pi,[0 1]);
-x=5*cos(a).*r+30;
-y=5*sin(a).*r+30;
-surf(x,y,x*0,x*0,'linestyle','none','Facealpha',0.5)
-surf(x,y,x*0+20,x*0,'linestyle','none','Facealpha',0.5)
-%绘制异常天气区
-[a,z]=ndgrid((0:.05:1)*2*pi,0:.05:20);
-x=7.5*cos(a)+60;
-y=7.5*sin(a)+70;
-surf(x,y,z,x*0,'linestyle','none','Facealpha',0.7,'FaceColor','g')
-hold on
-[a,r]=ndgrid((0:.05:1)*2*pi,[0 1]);
-x=7.5*cos(a).*r+60;
-y=7.5*sin(a).*r+70;
-surf(x,y,x*0,x*0,'linestyle','none','Facealpha',0.7,'FaceColor','g')
-surf(x,y,x*0+20,x*0,'linestyle','none','Facealpha',0.7,'FaceColor','g')
-hold off
-grid on
-view(70,60)
+% %绘制禁飞区
+% [a,z]=ndgrid((0:.05:1)*2*pi,0:.05:20);
+% x=5*cos(a)+30;
+% y=5*sin(a)+30;
+% surf(x,y,z,x*0,'linestyle','none','Facealpha',0.5)
+% hold on
+% [a,r]=ndgrid((0:.05:1)*2*pi,[0 1]);
+% x=5*cos(a).*r+30;
+% y=5*sin(a).*r+30;
+% surf(x,y,x*0,x*0,'linestyle','none','Facealpha',0.5)
+% surf(x,y,x*0+20,x*0,'linestyle','none','Facealpha',0.5)
+% %绘制异常天气区
+% [a,z]=ndgrid((0:.05:1)*2*pi,0:.05:20);
+% x=7.5*cos(a)+60;
+% y=7.5*sin(a)+70;
+% surf(x,y,z,x*0,'linestyle','none','Facealpha',0.7,'FaceColor','g')
+% hold on
+% [a,r]=ndgrid((0:.05:1)*2*pi,[0 1]);
+% x=7.5*cos(a).*r+60;
+% y=7.5*sin(a).*r+70;
+% surf(x,y,x*0,x*0,'linestyle','none','Facealpha',0.7,'FaceColor','g')
+% surf(x,y,x*0+20,x*0,'linestyle','none','Facealpha',0.7,'FaceColor','g')
+% hold off
+% grid on
+% view(70,60)
 % %绘制垂直剖面航图
 % figure(2)
 % X_WayPoints = WayPoints(end:-1:1,1);

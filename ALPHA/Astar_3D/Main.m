@@ -8,9 +8,12 @@ OPEN_COUNT_ALL = 0;
 Cut_Data = Final_Data(301:400,101:200);
 MIN_Final_Data = min(min(Cut_Data));
 tic%算法开始
-timerVal = tic
-[WayPoints,OPEN_COUNT] = A_star(MAX_X,MAX_Y,MAX_Z,20,20,7,90,70,5,MAP,CLOSED,Display_Data);
+timerVal = tic;
+startPoint=[20,20,7];
+targetPoint=[90,70,5];
+[WayPoints,OPEN_COUNT] = A_star(MAX_X,MAX_Y,MAX_Z,startPoint,targetPoint,MAP,CLOSED,Display_Data);
 toc(timerVal)
 %算法结束
 elapsedTime = toc(timerVal);
-plotAstar;
+% plotAstar;
+ploTest;
