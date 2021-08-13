@@ -39,10 +39,8 @@ while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)
     exp_array=expand_array(xFNode,yFNode,zFNode,xNode,yNode,zNode,path_cost,xTarget,yTarget,zTarget,CLOSED,MAX_X,MAX_Y,MAX_Z,Display_Data);
     exp_count=size(exp_array,1);
     %使用后继节点打开更新列表
-    %打开列表格式
-    %IS ON LIST 1/0 |X val |Y val |Parent X val |Parent Y val |h(n) |g(n)|f(n)|
-    %扩展阵列格式
-    %|X val |Y val ||h(n) |g(n)|f(n)|
+    %Open列表格式            IS ON LIST 1/0 |X val |Y val |Parent X val |Parent Y val |h(n) |g(n)|f(n)|
+    %Expan列表格式                   |X val |Y val ||h(n) |g(n)|f(n)|
     for i=1:exp_count
         flag=0;
         %判断exp_array中节点在不在OPEN列表中，0不在，1在
@@ -61,19 +59,15 @@ while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)
                 flag=1;
             end
             %节点检查结束
-            %         if flag == 1
-            %             break;
         end
-        %End of j for
+        %如果扩展节点不在open表内，就加入表内
         if flag == 0
             OPEN_COUNT = OPEN_COUNT+1;
             OPEN(OPEN_COUNT,:)=insert_open(exp_array(i,1),exp_array(i,2),exp_array(i,3),xNode,yNode,zNode,exp_array(i,4),exp_array(i,5),exp_array(i,6));
         end
-        %将新元素插入 OPEN 列表结束
     end
-    %End of i for
+    %对所有扩展节点检验完毕
     
-    %END OF WHILE LOOP
     %找出 fn 最小的节点
     index_min_node = min_fn(OPEN,OPEN_COUNT,xTarget,yTarget,zTarget);
     if (index_min_node ~= -1)
@@ -84,8 +78,8 @@ while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)
         xFNode=OPEN(index_min_node,5);
         yFNode=OPEN(index_min_node,6);
         zFNode=OPEN(index_min_node,7);
-        path_cost=OPEN(index_min_node,8);
-        %更新到达父节点的成本
+        path_cost=OPEN(index_min_node,8);%更新到达父节点的成本
+        
         %将节点移动到列表 CLOSED
         CLOSED_COUNT=CLOSED_COUNT+1;
         CLOSED(CLOSED_COUNT,1)=xNode;
@@ -116,9 +110,11 @@ i=i+1;
 if ( (xval == xTarget) && (yval == yTarget) && (zval == zTarget))
     inode=0;
     %遍历OPEN并确定父节点
-    parent_x=OPEN(node_index(OPEN,xval,yval,zval),5);%node_index 返回节点的索引
-    parent_y=OPEN(node_index(OPEN,xval,yval,zval),6);
-    parent_z=OPEN(node_index(OPEN,xval,yval,zval),7);
+    %node_index函数 返回节点的索引
+    nodeIndex=node_index(OPEN,xval,yval,zval);%返回父节点的索引值
+    parent_x=OPEN(nodeIndex,5);
+    parent_y=OPEN(nodeIndex,6);
+    parent_z=OPEN(nodeIndex,7);
     
     while( parent_x ~= xStart || parent_y ~= yStart || parent_z ~= zStart)
         Optimal_path(i,1) = parent_x;
@@ -126,7 +122,7 @@ if ( (xval == xTarget) && (yval == yTarget) && (zval == zTarget))
         Optimal_path(i,3) = parent_z;
         %Get the grandparents:-)
         inode=node_index(OPEN,parent_x,parent_y,parent_z);
-        parent_x=OPEN(inode,5);%node_index 返回节点的索引
+        parent_x=OPEN(inode,5);%这里是父节点的父节点
         parent_y=OPEN(inode,6);
         parent_z=OPEN(inode,7);
         i=i+1;
