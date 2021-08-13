@@ -44,18 +44,17 @@ while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)
     %扩展阵列格式
     %|X val |Y val ||h(n) |g(n)|f(n)|
     for i=1:exp_count
-        flag=0;             
+        flag=0;
         %判断exp_array中节点在不在OPEN列表中，0不在，1在
         for j=1:OPEN_COUNT
             if(exp_array(i,1) == OPEN(j,2) && exp_array(i,2) == OPEN(j,3) && exp_array(i,3) == OPEN(j,4) )
-                OPEN(j,10)=min(OPEN(j,10),exp_array(i,6)); 
-                %#ok<*SAGROW>
+                OPEN(j,10)=min(OPEN(j,10),exp_array(i,6));%10和6都是Fn值
                 if OPEN(j,10)== exp_array(i,6)
-                    %UPDATE PARENTS,gn,hn
-                    OPEN(j,5)=xNode;
+                    %更新父节点和hn、gn值
+                    OPEN(j,5)=xNode;                   %567位置为父节点
                     OPEN(j,6)=yNode;
                     OPEN(j,7)=zNode;
-                    OPEN(j,8)=exp_array(i,4);
+                    OPEN(j,8)=exp_array(i,4);         %对应位置为hn、gn
                     OPEN(j,9)=exp_array(i,5);
                 end
                 %最小 fn 检查结束
