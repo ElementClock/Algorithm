@@ -40,20 +40,20 @@ if (k_x == 1&&k_y == 0)||(k_x == 0&&k_y == 0)
                         exp_array(exp_count,3) = s_z;
                         Distance_TW = sqrt((s_x-60)^2 + (s_y-70)^2);
                         if Distance_TW > 7.5
-                            h_ThreatenW = 0;
+                            h_ThreatenW = 0;                    %高度威胁
                         end
                         if Distance_TW < 7.5
                             Point1_x = node_x + (s_x - node_x)/2;
                             Point1_y = node_y + (s_y - node_y)/2;
                             Point1_z = node_z + (s_z - node_z)/2;
-                            Point1_Dis = sqrt((Point1_x-60)^2 + (Point1_y-70)^2);
-                            node_Dis = sqrt((node_x-60)^2 + (node_y-70)^2);
+                            Point1_Dis = sqrt((Point1_x-60)^2 + (Point1_y-70)^2);              %
+                            node_Dis = sqrt((node_x-60)^2 + (node_y-70)^2);                    %节点距离
                             h_ThreatenW = (1/Point1_Dis + 1/node_Dis + 1/Distance_TW)*(k^2+j^2+z^2)*(1/3);
                         end
                         h_value = 1/s_z;
                         exp_array(exp_count,4) = 1 * hn + 1 * distanced(node_x,node_y,node_z,s_x,s_y,s_z) + 10 * h_ThreatenW + 8 * h_value;
                         %4，前往节点的成本
-                        %exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);
+                        exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);
                         %节点与目标之间的距离
                         exp_array(exp_count,5) = 1 * (abs(xTarget - s_x)+abs(yTarget - s_y)+abs(zTarget - s_z));
                         exp_array(exp_count,6) = exp_array(exp_count,4)+exp_array(exp_count,5);%fn
@@ -104,7 +104,7 @@ if (k_x == 1&&k_y == -1)
                             end
                             h_value = 1/s_z;
                             exp_array(exp_count,4) = 1 * hn + 1 * distanced(node_x,node_y,node_z,s_x,s_y,s_z) + 10 * h_ThreatenW + 8 * h_value;%cost of travelling to node
-                            %exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
+                            exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
                             exp_array(exp_count,5) = 1 * (abs(xTarget - s_x)+abs(yTarget - s_y)+abs(zTarget - s_z));
                             exp_array(exp_count,6) = exp_array(exp_count,4)+exp_array(exp_count,5);%fn
                             exp_count=exp_count+1;
@@ -154,7 +154,7 @@ if (k_x == 1&&k_y == 1)
                             end
                             h_value = 1/s_z;
                             exp_array(exp_count,4) = 1 * hn + 1 * distanced(node_x,node_y,node_z,s_x,s_y,s_z) + 10 * h_ThreatenW + 8 * h_value;%cost of travelling to node
-                            %exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
+                            exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
                             exp_array(exp_count,5) = 1 * (abs(xTarget - s_x)+abs(yTarget - s_y)+abs(zTarget - s_z));
                             exp_array(exp_count,6) = exp_array(exp_count,4)+exp_array(exp_count,5);%fn
                             exp_count=exp_count+1;
@@ -204,7 +204,7 @@ if (k_x == 0&&k_y == 1)
                             end
                             h_value = 1/s_z;
                             exp_array(exp_count,4) = 1 * hn + 1 * distanced(node_x,node_y,node_z,s_x,s_y,s_z) + 10 * h_ThreatenW + 8 * h_value;%cost of travelling to node
-                            %exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
+                            exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
                             exp_array(exp_count,5) = 1 * (abs(xTarget - s_x)+abs(yTarget - s_y)+abs(zTarget - s_z));
                             exp_array(exp_count,6) = exp_array(exp_count,4)+exp_array(exp_count,5);%fn
                             exp_count=exp_count+1;
@@ -253,7 +253,7 @@ if (k_x == 0&&k_y == -1)
                             end
                             h_value = 1/s_z;
                             exp_array(exp_count,4) = 1 * hn + 1 * distanced(node_x,node_y,node_z,s_x,s_y,s_z) + 10 * h_ThreatenW + 8 * h_value;%cost of travelling to node
-                            %exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
+                            exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
                             exp_array(exp_count,5) = 1 * (abs(xTarget - s_x)+abs(yTarget - s_y)+abs(zTarget - s_z));
                             exp_array(exp_count,6) = exp_array(exp_count,4)+exp_array(exp_count,5);%fn
                             exp_count=exp_count+1;
@@ -303,7 +303,7 @@ if (k_x == -1&&k_y == 1)
                             end
                             h_value = 1/s_z;
                             exp_array(exp_count,4) = 1 * hn + 1 * distanced(node_x,node_y,node_z,s_x,s_y,s_z) + 10 * h_ThreatenW + 8 * h_value;%cost of travelling to node
-                            %exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
+                            exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
                             exp_array(exp_count,5) = 1 * (abs(xTarget - s_x)+abs(yTarget - s_y)+abs(zTarget - s_z));
                             exp_array(exp_count,6) = exp_array(exp_count,4)+exp_array(exp_count,5);%fn
                             exp_count=exp_count+1;
@@ -353,7 +353,7 @@ if (k_x == -1&&k_y == 0)
                             end
                             h_value = 1/s_z;
                             exp_array(exp_count,4) = 1 * hn + 1 * distanced(node_x,node_y,node_z,s_x,s_y,s_z) + 10 * h_ThreatenW + 8 * h_value;%cost of travelling to node
-                            %exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
+                            exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
                             exp_array(exp_count,5) = 1 * (abs(xTarget - s_x)+abs(yTarget - s_y)+abs(zTarget - s_z));
                             exp_array(exp_count,6) = exp_array(exp_count,4)+exp_array(exp_count,5);%fn
                             exp_count=exp_count+1;
@@ -403,7 +403,7 @@ if (k_x == -1&&k_y == -1)
                             end
                             h_value = 1/s_z;
                             exp_array(exp_count,4) = 1 * hn + 1 * distanced(node_x,node_y,node_z,s_x,s_y,s_z) + 10 * h_ThreatenW + 8 * h_value;%cost of travelling to node
-                            %exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
+                            exp_array(exp_count,4) = distance(xTarget,yTarget,s_x,s_y);%distance between node and goal
                             exp_array(exp_count,5) = 1 * (abs(xTarget - s_x)+abs(yTarget - s_y)+abs(zTarget - s_z));
                             exp_array(exp_count,6) = exp_array(exp_count,4)+exp_array(exp_count,5);%fn
                             exp_count=exp_count+1;
