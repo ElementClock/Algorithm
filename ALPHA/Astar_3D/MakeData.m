@@ -1,20 +1,26 @@
 function  MakeData()
 %制作地图的数据
-load ('TerrainData.mat');
-%Define The 2-D Map Array
+clc,clear;
+load ('alphaMap.mat');
+% MAX_X = max(map.X);
+% MAX_Y = max(map.Y);
+% MAX_Z = max(max(map.Z))+100;
 MAX_X = 100;
 MAX_Y = 100;
 MAX_Z = 50;
-Cut_Data = Final_Data(301:400,101:200);
-mesh(double(Cut_Data));
-MAX_Final_Data = max(max(Cut_Data));
-MIN_Final_Data = min(min(Cut_Data));
+Final_Data=double(map.Z);
+% mesh(map.X/30,map.Y/30,map.Z/50);
+axis('equal');
+MAX_Final_Data = max(max(map.Z));
+MIN_Final_Data = min(min(map.Z));
 %此处是缩小计算范围，因为Y轴的起始点不是从0开始
-for i=1:100
-    for j=1:100
-        New_Data(i,j) = ceil((Cut_Data(i,j)-MIN_Final_Data)/100);
+xNum=length(map.X);
+yNum=length(map.Y);
+for i=1:xNum
+    for j=1:yNum
+        New_Data(i,j) = ceil((map.Z(i,j)-MIN_Final_Data)/50);
         %ceil 向正无穷取整，取整是为了定位坐标
-        Display_Data(i,j) = (Cut_Data(i,j)-MIN_Final_Data)/100;
+        Display_Data(i,j) =double( (map.Z(i,j)-MIN_Final_Data)/50);
     end
 end
 
@@ -98,4 +104,4 @@ end
 %         end
 %     end
 % end
-save MapData MAX_X MAX_Y MAX_Z MAP CLOSED Final_Data Display_Data
+save MapData1 MAX_X MAX_Y MAX_Z MAP CLOSED Final_Data Display_Data

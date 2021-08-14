@@ -129,7 +129,7 @@ if ( (xval == xTarget) && (yval == yTarget) && (zval == zTarget))
         i=i+1;
     end
     j=size(Optimal_path,1);
-    plot3(Optimal_path(:,1)+.5,Optimal_path(:,2)+.5,Optimal_path(:,3)+.5,'b','linewidth',5);
+%     plot3(Optimal_path(:,1)+.5,Optimal_path(:,2)+.5,Optimal_path(:,3)+.5,'b','linewidth',5);
     WayPoints = Optimal_path;
     disp('最优路径检索完毕！');
 else
