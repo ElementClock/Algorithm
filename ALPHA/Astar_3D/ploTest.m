@@ -1,7 +1,7 @@
 %绘图
 figure(1)
 axis([1 MAX_X 1 MAX_Y 1 MAX_Z]);
-plot3(WayPoints(:,1),WayPoints(:,2),WayPoints(:,3),'b','linewidth',2);
+% plot3(WayPoints(:,1),WayPoints(:,2),WayPoints(:,3),'b','linewidth',2);
 hold on
 mesh(Display_Data(1:100,1:100)');
 plot3(20,20,7,'*');

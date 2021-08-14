@@ -50,32 +50,32 @@ for i=1:MAX_X
     end
 end
 %输入禁飞区信息
-c2=size(CLOSED,1);
-for i_z=1:20
-    for i_x=1:100
-        for i_y=1:100
-            
-            
-            flag = 1;
-            Length = (i_x-30)^2 + (i_y-30)^2;
-            for c1=1:c2
-                if (i_x == CLOSED(c1,1) && i_y == CLOSED(c1,2) && i_z == CLOSED(c1,3))
-                    flag = 0;
-                end
-            end
-            
-            if Length <= 25 && flag == 1
-                %当距离小于5且当前点不为障碍时（即为地表之上时），设置为障碍
-                CLOSED(c2+1,1)=i_x;
-                CLOSED(c2+1,2)=i_y;
-                CLOSED(c2+1,3)=i_z;
-                c2 = c2+1;
-            end
-            
-            
-        end
-    end
-end
+% c2=size(CLOSED,1);
+% for i_z=1:20
+%     for i_x=1:100
+%         for i_y=1:100
+%             
+%             
+%             flag = 1;
+%             Length = (i_x-30)^2 + (i_y-30)^2;
+%             for c1=1:c2
+%                 if (i_x == CLOSED(c1,1) && i_y == CLOSED(c1,2) && i_z == CLOSED(c1,3))
+%                     flag = 0;
+%                 end
+%             end
+%             
+%             if Length <= 25 && flag == 1
+%                 %当距离小于5且当前点不为障碍时（即为地表之上时），设置为障碍
+%                 CLOSED(c2+1,1)=i_x;
+%                 CLOSED(c2+1,2)=i_y;
+%                 CLOSED(c2+1,3)=i_z;
+%                 c2 = c2+1;
+%             end
+%             
+%             
+%         end
+%     end
+% end
 %输入异常气象区域信息
 % k = 1;
 % c3 = size(CLOSED,1);

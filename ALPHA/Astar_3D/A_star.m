@@ -31,6 +31,7 @@ CLOSED(CLOSED_COUNT,2)=yNode;
 CLOSED(CLOSED_COUNT,3)=zNode;
 NoPath=1;%是否有路径判断符1有，0无
 % 启动算法
+disp('算法开始检索所有节点！');
 while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)         %当前点不为终点且判断有路径时
     %expand_array(父节点x,父节点y,当前节点x,当前节点y,h(n),目标x,目标y,CLOSED,表X,表y,地形上界y)
     %返回值exp_array：扩展x,扩展y,扩展z,h(n),g(n),f(n)
@@ -61,6 +62,7 @@ while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)
         %如果扩展节点不在open表内，就加入表内
         if flag == 0
             OPEN_COUNT = OPEN_COUNT+1;
+%             disp(['正在检索第' num2str(OPEN_COUNT) '个点']);
             OPEN(OPEN_COUNT,:)=insert_open(exp_array(i,1),exp_array(i,2),exp_array(i,3),xNode,yNode,zNode,exp_array(i,4),exp_array(i,5),exp_array(i,6));
         end
     end
@@ -91,6 +93,7 @@ while((xNode ~= xTarget || yNode ~= yTarget || zNode ~= zTarget) && NoPath == 1)
     end
     %index_min_node 检查结束
 end
+disp('Astar探索完毕！开始检索最优路径！');
 %End of While Loop
 %一旦算法运行 最优路径是通过从最后一个节点（如果它是目标节点）开始
 %然后识别其父节点直到到达起始节点来生成的。这是最优路径
@@ -128,6 +131,7 @@ if ( (xval == xTarget) && (yval == yTarget) && (zval == zTarget))
     j=size(Optimal_path,1);
     plot3(Optimal_path(:,1)+.5,Optimal_path(:,2)+.5,Optimal_path(:,3)+.5,'b','linewidth',5);
     WayPoints = Optimal_path;
+    disp('最优路径检索完毕！');
 else
     pause(1);
     h=msgbox('Sorry, No path exists to the Target!','warn');
