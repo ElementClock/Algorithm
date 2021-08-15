@@ -1,10 +1,5 @@
-
-  
-
-% {This function acts as a condition to check binary value of any possible
-% intersection, using geometry of comparing distance between coordinates}
-% {The value obtained by this function is sent to the function ob_avoidance
-% to compare and decide whether the obstacle is interfering the new edge} 
+% 此函数用作检查任何可能交叉点的二进制值的条件，使用比较坐标之间的距离的几何
+% 这个函数得到的值发送给函数ob_avoidance比较判断障碍物是否干扰了新的边
 function val = condition(A,B,C)
 val = (C(2)-A(2)) * (B(1)-A(1)) > (B(2)-A(2)) * (C(1)-A(1));
 end

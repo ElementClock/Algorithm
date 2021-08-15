@@ -1,7 +1,5 @@
-%{ This function uses coordinates, factor of value and epsilon criteria
-% to move the branch further in the direction of new node selected by
-% algorithm. If distance is very large, it will form a new node in the same
-% direction as the nearest node selected to move before}
+%该函数使用坐标、值的因子和 epsilon 标准在算法选择的新节点的方向上进一步移动分支。 
+%如果距离非常大，就会形成一个新的节点，与之前选择移动的最近节点同方向
 function A = move(qr, qn, val, eps)
 q_new = [0 0];
 if val >= eps

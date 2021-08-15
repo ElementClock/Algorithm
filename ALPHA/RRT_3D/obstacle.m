@@ -1,6 +1,4 @@
-%{Function used to create graphical image of a cuboid of any size
-% It takes coordinates of one corner and side lengths in x,y and z
-% direction as input and produces image as output}
+% 用于创建任意大小长方体图形图像的函数它以x，y和方向的一个角和边长的坐标作为输入，并产生图像作为输出}
 function obstacle(varargin)
 inArgs = { ...
     [10 56 100] , ...

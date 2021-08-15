@@ -12,19 +12,19 @@ ylabel('Y')
 zlabel('Z')
 hold on
 compare = 40;                                        % 用于限制特定范围内移动的值
-Max_num_Nodes = 1600; 
+Max_num_Nodes = 1600;
 q_start.config = [0 0 0];                           % 机器人初始位置
 q_start.cost = 0;                                      % 到达节点的成本
 q_start.parent = 0;                                  % parent 是它通过的节点
 q_goal.config = [600 500 100];                % 目的地
 q_goal.cost = 0;                                      % 成本的初始化
 nodes(1) = q_start;                                 % 定义第一个节点作为起始位置
- plot3(q_start.config(1), q_start.config(2), q_start.config(3), 'o',...
+plot3(q_start.config(1), q_start.config(2), q_start.config(3), 'o',...
     'LineWidth',2,...
     'MarkerEdgeColor','k',...
     'MarkerFaceColor','b',...
     'MarkerSize',14);
- plot3(q_goal.config(1), q_goal.config(2), q_goal.config(3), 'o',...
+plot3(q_goal.config(1), q_goal.config(2), q_goal.config(3), 'o',...
     'LineWidth',2,...
     'MarkerEdgeColor','k',...
     'MarkerFaceColor','r',...
@@ -48,7 +48,7 @@ cyl_obs(x02,y02,z02,R02,h2)
 cyl_obs(x03,y03,z03,R03,h3)
 cyl_obs(x04,y04,z04,R04,h4)
 
-% 以矩阵形式提供每个障碍物的数据以供稍后使用 
+% 以矩阵形式提供每个障碍物的数据以供稍后使用
 ob(1,1:6)=[p_obstacle(1), p_obstacle(2),p_obstacle(3), size_obstacle(1), size_obstacle(2), size_obstacle(3)];
 ob(2,1:6)=[x0-R0, y0-R0,z0-R0 2*R0, 2*R0, h1];
 ob(3,1:6)=[x02-R02, y02-R02, z02-R02 2*R02, 2*R02, h2];
@@ -64,7 +64,7 @@ for i = 1:1:Max_num_Nodes
     plot3(q_rand(1), q_rand(2), q_rand(3), 'x', 'Color',  [0 0.4470 0.7410]);
     hold on
     legend({'Start Node','Goal Node'},'Location','northeast')
-   
+    
     % 一个条件，使用 break 命令，如果机器人到达目标节点并满足要求，则退出循环
     for j = 1:1:length(nodes)
         if nodes(j).config == q_goal.config
@@ -72,7 +72,7 @@ for i = 1:1:Max_num_Nodes
         end
     end
     
-   % 比较当前节点和新节点之间的距离以从一组随机节点中找到最近的节点 
+    % 比较当前节点和新节点之间的距离以从一组随机节点中找到最近的节点
     n_dist = [];
     for j = 1:1:length(nodes)
         n = nodes(j);
@@ -82,25 +82,26 @@ for i = 1:1:Max_num_Nodes
     [val, idx] = min(n_dist);
     q_near = nodes(idx);
     q_new.config = move(q_rand, q_near.config, val, compare);
-    % {The following 'if' Condition checks whether the edge found collides
-    % with any obstacle using the function provided at the end} 
+    
+    
+    % 以下'if'条件使用最后提供的函数检查找到的边缘是否与任何障碍物发生碰撞
     if ob_avoidance(q_rand, q_near.config, ob(1,:)) && ob_avoidance(q_rand, q_near.config, ob(2,:)) && ob_avoidance(q_rand, q_near.config, ob(3,:)) && ob_avoidance(q_rand, q_near.config, ob(4,:)) && ob_avoidance(q_rand, q_near.config, ob(5,:)) && ob_avoidance(q_rand, q_near.config, ob(6,:))
         line([q_near.config(1), q_new.config(1)], [q_near.config(2), q_new.config(2)], [q_near.config(3), q_new.config(3)], 'Color', 'm', 'LineWidth', 2);
-        drawnow; % This command shows actual plotting of convergence 
+        drawnow; % 此命令显示收敛的实际绘图
         hold on
         q_new.cost = euc_dist_3d(q_new.config, q_near.config) + q_near.cost;
         q_nearest = [];
         r = 50;
         neighbor_count = 1;
         for j = 1:1:length(nodes)
-            if (euc_dist_3d(nodes(j).config, q_new.config)) <= r && ob_avoidance(q_rand, q_near.config, ob(1,:)) && ob_avoidance(q_rand, q_near.config, ob(2,:)) && ob_avoidance(q_rand, q_near.config, ob(3,:)) && ob_avoidance(q_rand, q_near.config, ob(4,:)) && ob_avoidance(q_rand, q_near.config, ob(5,:)) && ob_avoidance(q_rand, q_near.config, ob(6,:)) 
+            if (euc_dist_3d(nodes(j).config, q_new.config)) <= r && ob_avoidance(q_rand, q_near.config, ob(1,:)) && ob_avoidance(q_rand, q_near.config, ob(2,:)) && ob_avoidance(q_rand, q_near.config, ob(3,:)) && ob_avoidance(q_rand, q_near.config, ob(4,:)) && ob_avoidance(q_rand, q_near.config, ob(5,:)) && ob_avoidance(q_rand, q_near.config, ob(6,:))
                 q_nearest(neighbor_count).config = nodes(j).config;
                 q_nearest(neighbor_count).cost = nodes(j).cost;
                 neighbor_count = neighbor_count+1;
             end
         end
-        % Comparing the costs to travel through different nodes to nearest
-        % node, and finally selecting the least cost node
+        
+        % 比较通过不同节点到最近节点的成本，最后选择成本最低的节点
         q_min = q_near;
         C_min = q_new.cost;
         for k = 1:1:length(q_nearest)
@@ -121,17 +122,15 @@ for i = 1:1:Max_num_Nodes
     end
 end
 toc
-% Finding the shortest destance path by forming a vector with distances 
+% 通过形成具有距离的向量来寻找最短距离路径
 D = [];
 for j = 1:1:length(nodes)
     tmp_dist = euc_dist_3d(nodes(j).config, q_goal.config);
     D = [D tmp_dist];
 end
 
-% Comparing the elements of vector formed above and finding the minimum
-% distance out of it to get final path
-% If in case, the last node selected is not goal node, we replace it and
-% add at the end, goal node, in nodes list
+% 比较上面形成的向量的元素并找到它的最小距离以获得最终路径如果最后选择的节点不是目标节点
+% 我们替换它并在节点列表的末尾添加目标节点
 [val, idx] = min(D);
 q_goal.parent = idx;
 q_end = q_goal;
@@ -144,9 +143,4 @@ while q_end.parent ~= 0
     hold on
     q_end = nodes(start);
 end
-  label(data1,'Final Path')
-
-
-
-
-
+label(data1,'Final Path')
