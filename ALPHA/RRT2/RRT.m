@@ -109,8 +109,10 @@ pathLength = 0;
 for i=1:length(path(:,1))-1
     pathLength = pathLength + distanceCost(path(i,1:3),path(i+1,1:3));
 end
+pathLength=pathLength*108.6278;%倍率
 % 计算路径长度
 toc
+RRTime=toc;
 disp(['规划路径长度为', num2str(pathLength)]);
 %% 绘制结果图
 % figure(2)

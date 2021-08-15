@@ -183,6 +183,7 @@ set(gca,'Position',[0.07 0.08 0.9 0.9]);
 hold on;
 plot3(path(pos,:,1)*map.gap,path(pos,:,2)*map.gap,path(pos,:,3),'ro-','LineWidth',2);                   %乘以间隔是高程图的精细度
 toc
+GNtime=toc;
 %计时结束
 
 % %% 将数据存储至mat
