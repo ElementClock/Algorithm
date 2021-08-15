@@ -5,6 +5,9 @@ clc
 clear
 
 %% 数据初始化
+% load alphaMap;
+% HeightData=double(map.Z);
+
 
 HeightData = [2000 1400 800 650 500 750 1000 950 900 800 700 900 1100 1050 1000 1150 1300 1250 1200 1350 1500;
    1100 900 700 625 550 825 1100 1150 1200 925 650 750 850 950 1050 1175 1300 1350 1400 1425 1450;
@@ -93,6 +96,7 @@ y=1:21;
 mesh(x1,y1,HeightData)
 axis([1,21,1,21,0,2000])
 hold on
+% axis('equal');
 k=1:21;
 plot3(k(1)',a(1,1)',a(1,2)'*200,'-o','LineWidth',2,'MarkerEdgeColor','k','MarkerFaceColor','r','MarkerSize',7)
 plot3(k(21)',a(21,1)',a(21,2)'*200,'-o','LineWidth',2,'MarkerEdgeColor','k','MarkerFaceColor','r','MarkerSize',7)
