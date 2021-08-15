@@ -11,8 +11,8 @@ tic%算法开始
 timerVal = tic;
 % startPoint=[20 20 7];
 % targetPoint=[90 70 5];
-startPoint=[15 12 4];
-targetPoint=[55 45 25];
+startPoint=[1 1 10];
+targetPoint=[100 100 17];
 [WayPoints,OPEN_COUNT] = A_star(MAX_X,MAX_Y,MAX_Z,startPoint,targetPoint,MAP,CLOSED,Display_Data);
 toc(timerVal)
 %算法结束
