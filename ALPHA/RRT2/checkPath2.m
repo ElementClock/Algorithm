@@ -1,6 +1,7 @@
 function feasible=checkPath2(closeNode,newNode,terrainData,distaceLand)   %地形检验
 %closeNode为最近节点
 %newPos为新节点
+%terrainData为地形数据
 
 feasible=true;
 %前进向量

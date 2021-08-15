@@ -20,7 +20,7 @@ load Data
 %     hold on;
 % end
 axis equal
-mesh(1:100,1:100,map.Z);
+mesh(1:100,1:100,map.Z');
 hold on;
 
 %% 参数
@@ -110,7 +110,8 @@ for i=1:length(path(:,1))-1
     pathLength = pathLength + distanceCost(path(i,1:3),path(i+1,1:3));
 end
 % 计算路径长度
-fprintf('processing time=%d \nPath Length=%d \n\n', toc, pathLength);
+toc
+disp(['规划路径长度为', num2str(pathLength)]);
 %% 绘制结果图
 % figure(2)
 % for i = 1:length(circleCenter(:,1))
