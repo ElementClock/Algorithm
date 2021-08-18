@@ -7,7 +7,7 @@ load ('alphaMap.mat');
 % MAX_Z = max(max(map.Z))+100;
 MAX_X = 100;
 MAX_Y = 100;
-MAX_Z = 50;
+MAX_Z = 100;
 Final_Data=double(map.Z);
 % mesh(map.X/30,map.Y/30,map.Z/50);
 axis('equal');
@@ -18,9 +18,9 @@ xNum=length(map.X);
 yNum=length(map.Y);
 for i=1:xNum
     for j=1:yNum
-        New_Data(i,j) = ceil((map.Z(i,j)-MIN_Final_Data)/50);
+        New_Data(i,j) = ceil((map.Z(i,j)-MIN_Final_Data)/30);
         %ceil 向正无穷取整，取整是为了定位坐标
-        Display_Data(i,j) =double( (map.Z(i,j)-MIN_Final_Data)/50);
+        Display_Data(i,j) =double( (map.Z(i,j)-MIN_Final_Data)/30);
     end
 end
 
