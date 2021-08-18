@@ -1,7 +1,7 @@
 function  makeData
 load alphaMap
 map.Z=double(map.Z);
-map.Z=ceil((map.Z-min(min(map.Z)))/100);
+map.Z=ceil((map.Z-min(min(map.Z)))/30);
 k=1;
 terrainData=[];
 for i=1:length(map.X)

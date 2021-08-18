@@ -24,13 +24,13 @@ mesh(1:100,1:100,map.Z');
 hold on;
 
 %% 参数
-source=[2 2 10];
-goal=[99 99 10];
-stepsize = 10;
+source=[2 2 20];
+goal=[100 100 35];
+stepsize = 20;
 threshold = 10;
 maxFailedAttempts = 10000;
 display = true;
-searchSize = [100 100 50];      %探索空间六面体
+searchSize = [100 100 70];      %探索空间六面体
 %% 绘制起点和终点
 hold on;
 scatter3(source(1),source(2),source(3),"filled","g");
@@ -109,7 +109,7 @@ pathLength = 0;
 for i=1:length(path(:,1))-1
     pathLength = pathLength + distanceCost(path(i,1:3),path(i+1,1:3));
 end
-pathLength=pathLength*108.6278;%倍率
+pathLength=pathLength*30;%倍率
 % 计算路径长度
 toc
 RRTime=toc;

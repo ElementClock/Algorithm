@@ -1,6 +1,6 @@
 clc,clear;
 % save astarData
-% save rrtData
+save rrtData
 % save gnDatas
 % for NNN=1:100
 %     addpath GN
@@ -18,13 +18,13 @@ clc,clear;
 %     rmpath Astar
 % end
 
-% for NNN=1:100
-%     addpath RRT2
-%     [T,L]=testime(3);
-%     rrtData(NNN,:)=[T,L];
-%     save('rrtData.mat','rrtData','-append');
-%     rmpath RRT2
-% end
+for NNN=1:100
+    addpath RRT2
+    [T,L]=testime(3);
+    rrtData(NNN,:)=[T,L];
+    save('rrtData.mat','rrtData','-append');
+    rmpath RRT2
+end
 
 rmpath GN
 rmpath Astar
