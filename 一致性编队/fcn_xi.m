@@ -1,4 +1,3 @@
-
 function y = fcn_xi(u)
 t = u;
 r = 10;
