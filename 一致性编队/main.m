@@ -35,7 +35,7 @@ theta50 = 5*[rand(1) rand(1) rand(1) rand(1)]';%application2
 % theta30 = [-3.65,-0.29,2.71,-0.05]';%application3
 % theta40 = [-3.90,-0.18,-3.6,0.08]';%application3
 % theta50 = [2,-0.02,-5.13,0.02]';%application3
-%%  
+%%
 theta0 = [theta10;theta20;theta30;theta40;theta50];
 A = kron(D,kron(B3,(B2*k1+B1*B2')))-kron(L,kron(B3,B2*k2));
 B_h = kron(D,kron(B3,B2*k1))-kron(L,kron(B3,B2*k2));

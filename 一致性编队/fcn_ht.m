@@ -9,23 +9,23 @@ h_vX = zeros(1,5);
 h_xY = zeros(1,5);
 h_vY = zeros(1,5);
 for i = 1:5
-         %% Application1
-%          g(i) = sign(sin(omega*t/2+pi*(i-1)/5));
-%          h_xX(i) = r*cos((omega*t+2*pi*(i-1)/5)-1)*g(i);%期望编队位置X
-%          h_vX(i) = -r*omega*sin(omega*t+2*pi*(i-1)/5)*g(i);%期望编队速度X
-%          h_xY(i) = r*sin(omega*t+2*pi*(i-1)/5);%期望编队位置Y
-%          h_vY(i)= r*omega*cos(omega*t+2*pi*(i-1)/5);%期望编队速度Y
-         
-        %% Application2
-        h_xX(i) = r*sin(omega*t+2*pi*(i-1)/5);%期望编队位置X
-        h_vX(i) = r*omega*cos(omega*t+2*pi*(i-1)/5);%期望编队速度X
-        h_xY(i) = r*cos(omega*t+2*pi*(i-1)/5);%期望编队位置Y
-        h_vY(i)= -r*omega*sin(omega*t+2*pi*(i-1)/5);%期望编队速度Y
-%% Application 3
-%           h_xX(i) = r*sin(omega*t)+d*cos(2*pi*(i-1)/5);%期望编队位置X
-%           h_vX(i) = r*omega*cos(omega*t);%期望编队速度X
-%           h_xY(i) = r*sin(2*omega*t)+d*sin(2*pi*(i-1)/5);%期望编队位置Y
-%           h_vY(i)=  2*r*omega*cos(2*omega*t);%期望编队速度Y
+    %% Application1
+    %          g(i) = sign(sin(omega*t/2+pi*(i-1)/5));
+    %          h_xX(i) = r*cos((omega*t+2*pi*(i-1)/5)-1)*g(i);%期望编队位置X
+    %          h_vX(i) = -r*omega*sin(omega*t+2*pi*(i-1)/5)*g(i);%期望编队速度X
+    %          h_xY(i) = r*sin(omega*t+2*pi*(i-1)/5);%期望编队位置Y
+    %          h_vY(i)= r*omega*cos(omega*t+2*pi*(i-1)/5);%期望编队速度Y
+    
+    %% Application2
+    h_xX(i) = r*sin(omega*t+2*pi*(i-1)/5);%期望编队位置X
+    h_vX(i) = r*omega*cos(omega*t+2*pi*(i-1)/5);%期望编队速度X
+    h_xY(i) = r*cos(omega*t+2*pi*(i-1)/5);%期望编队位置Y
+    h_vY(i)= -r*omega*sin(omega*t+2*pi*(i-1)/5);%期望编队速度Y
+    %% Application 3
+    %           h_xX(i) = r*sin(omega*t)+d*cos(2*pi*(i-1)/5);%期望编队位置X
+    %           h_vX(i) = r*omega*cos(omega*t);%期望编队速度X
+    %           h_xY(i) = r*sin(2*omega*t)+d*sin(2*pi*(i-1)/5);%期望编队位置Y
+    %           h_vY(i)=  2*r*omega*cos(2*omega*t);%期望编队速度Y
 end
 y11 = [h_xX(:,1) h_vX(:,1) h_xY(:,1) h_vY(:,1)];
 y12 = [h_xX(:,2) h_vX(:,2) h_xY(:,2) h_vY(:,2)];
