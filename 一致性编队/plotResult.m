@@ -108,39 +108,3 @@ plot(ht(:,6),ht(:,8),'b-')
 plot(ht(:,10),ht(:,12),'r-')
 plot(ht(:,14),ht(:,16),'g-')
 plot(ht(:,18),ht(:,20),'m-')
-
-
-%% Dong2017InternationalRobust
-% figure(1)
-% box on
-% grid on
-% hold on
-% 
-% plot3([theta(150,1),theta(150,4)],[theta(150,2),theta(150,5)],[theta(150,3),theta(150,6)],'k-')
-% plot3([theta(150,4),theta(150,7)],[theta(150,5),theta(150,8)],[theta(150,6),theta(150,9)],'b--')
-% plot3([theta(150,7),theta(150,10)],[theta(150,8),theta(150,11)],[theta(150,9),theta(150,12)],'r-.')
-% plot3([theta(150,10),theta(150,1)],[theta(150,11),theta(150,2)],[theta(150,12),theta(150,3)],'m:.')
-% 
-% plot3([theta(150,13),theta(150,16)],[theta(150,14),theta(150,17)],[theta(150,15),theta(150,18)],'k-')
-% plot3([theta(150,16),theta(150,19)],[theta(150,17),theta(150,20)],[theta(150,18),theta(150,21)],'b--')
-% plot3([theta(150,19),theta(150,22)],[theta(150,20),theta(150,23)],[theta(150,21),theta(150,24)],'r-.')
-% plot3([theta(150,22),theta(150,13)],[theta(150,23),theta(150,14)],[theta(150,24),theta(150,15)],'m:.')
-% % axis([-100 100 -40 40 -100 30])
-% b1=sqrt((theta(150,1)-theta(150,4))^2+(theta(150,2)-theta(150,5))^2+(theta(150,3)-theta(150,6))^2);
-% b2=sqrt((theta(150,4)-theta(150,7))^2+(theta(150,5)-theta(150,8))^2+(theta(150,6)-theta(150,9))^2);
-% b3=sqrt((theta(150,7)-theta(150,10))^2+(theta(150,8)-theta(150,11))^2+(theta(150,9)-theta(150,12))^2);
-% b4=sqrt((theta(150,10)-theta(150,1))^2+(theta(150,11)-theta(150,2))^2+(theta(150,12)-theta(150,3))^2);
-% 
-% figure(2)
-% hold on
-% box on
-% grid on
-% plot3([ht(150,1),ht(150,4)],[ht(150,2),ht(150,5)],[ht(150,3),ht(150,6)],'k-')
-% plot3([ht(150,4),ht(150,7)],[ht(150,5),ht(150,8)],[ht(150,6),ht(150,9)],'b--')
-% plot3([ht(150,7),ht(150,10)],[ht(150,8),ht(150,11)],[ht(150,9),ht(150,12)],'r-.')
-% plot3([ht(150,10),ht(150,1)],[ht(150,11),ht(150,2)],[ht(150,12),ht(150,3)],'m:.')
-% 
-% c1=sqrt((ht(150,1)-ht(150,4))^2+(ht(150,2)-ht(150,5))^2+(ht(150,3)-ht(150,6))^2);
-% c2=sqrt((ht(150,4)-ht(150,7))^2+(ht(150,5)-ht(150,8))^2+(ht(150,6)-ht(150,9))^2);
-% c3=sqrt((ht(150,7)-ht(150,10))^2+(ht(150,8)-ht(150,11))^2+(ht(150,9)-ht(150,12))^2);
-% c4=sqrt((ht(150,10)-ht(150,1))^2+(ht(150,11)-ht(150,2))^2+(ht(150,12)-ht(150,3))^2);
