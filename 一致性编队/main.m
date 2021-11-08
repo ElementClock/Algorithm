@@ -2,9 +2,9 @@ clear;clc;close all
 W = [0 0 0 0 1;1 0 0 0 0;0 1 0 0 0;0 0 1 0 0;0 0 0 1 0];%图G的邻接矩阵
 D = eye(5);%入度矩阵，设计连接权重都为1
 L = D-W;%拉普拉斯算子矩阵
-[V,E] = eig(L);
+[V,E] = eig(L);%获取特征向量、特征值
 V(:,1) = ones(5,1);
-VV = inv(V);
+VV = inv(V);%求逆
 B1 = [1 0]';
 B2 = [0 1]';
 B3 = eye(2);%identity matrix
