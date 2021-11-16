@@ -9,22 +9,10 @@ dh_vX = zeros(1,5);
 dh_xY = zeros(1,5);
 dh_vY = zeros(1,5);
 for i = 1:5
-    %% Application1
-    %      g(i) = sign(sin(omega*t/2+pi*(i-1)/5));
-    %     dh_xX(i) = omega*r*cos(omega*t + (2*pi*(i - 1))/5 - 1)*cos((omega*t)/2 + (pi*(i - 1))/5)*dirac(sin((omega*t)/2 + (pi*(i - 1))/5)) - omega*r*sign(sin((omega*t)/2 + (pi*(i - 1))/5))*sin(omega*t + (2*pi*(i - 1))/5 - 1);%期望编队位置X
-    %     dh_vX(i) = - omega^2*r*sign(sin((omega*t)/2 + (pi*(i - 1))/5))*cos(omega*t + (2*pi*(i - 1))/5) - omega^2*r*cos((omega*t)/2 + (pi*(i - 1))/5)*sin(omega*t + (2*pi*(i - 1))/5)*dirac(sin((omega*t)/2 + (pi*(i - 1))/5));%期望编队速度X导数
-    %     dh_xY(i) = omega*r*cos(omega*t + (2*pi*(i - 1))/5);%期望编队位置Y
-    %     dh_vY(i)= -omega^2*r*sin(omega*t + (2*pi*(i - 1))/5);%期望编队速度Y
-    %% Application2
     dh_xX(i) = r*omega*cos((omega*t+2*pi*(i-1)/5));%期望编队位置X
     dh_vX(i) = -r*omega^2*sin(omega*t+2*pi*(i-1)/5);%期望编队速度X
     dh_xY(i) = -r*omega*sin(omega*t+2*pi*(i-1)/5);%期望编队位置Y
     dh_vY(i)= -r*omega^2*cos(omega*t+2*pi*(i-1)/5);%期望编队速度Y
-    %% Application 3
-    %     dh_xX(i) = r*omega*cos(omega*t);%期望编队位置X
-    %     dh_vX(i) = -r*omega^2*sin(omega*t);%期望编队速度X
-    %     dh_xY(i) = 2*r*omega*cos(2*omega*t);%期望编队位置Y
-    %     dh_vY(i)=  -4*r*omega^2*sin(2*omega*t);%期望编队速度Y
 end
 y11 = [dh_vX(:,1) dh_vY(:,1)];
 y12 = [dh_vX(:,2) dh_vY(:,2)];

@@ -2,7 +2,8 @@
 clc
 close all
 m=500;
-figure(1)%多个智能体的运动轨迹
+% figure(1)%多个智能体的运动轨迹
+subplot(221);
 hold on
 box on
 plot(theta(length(tout),1),theta(length(tout),3),'ks')%终点
@@ -33,7 +34,8 @@ plot([theta(m,9),theta(m,13)],[theta(m,11),theta(m,15)],'-.k')
 plot([theta(m,13),theta(m,17)],[theta(m,15),theta(m,19)],'-.k')
 plot([theta(m,17),theta(m,1)],[theta(m,19),theta(m,3)],'-.k')
 
-figure(2)%实际模型速度
+% figure(2)%实际模型速度
+subplot(222)
 hold on
 box on
 plot(theta(length(tout),2),theta(length(tout),4),'ks')%终点
@@ -58,7 +60,8 @@ plot(theta(:,18),theta(:,20),'m-')
 plot(xi(:,2),xi(:,4),'c-')
 
 
-figure(3)%期望编队的运动轨迹
+% figure(3)%期望编队的运动轨迹
+subplot(223);
 hold on
 box on
 
@@ -88,7 +91,8 @@ plot([ht(m,13),ht(m,17)],[ht(m,15),ht(m,19)],'-.k')
 plot([ht(m,17),ht(m,1)],[ht(m,19),ht(m,3)],'-.k')
 legend('UAV1','UAV2','UAV3','UAV4','UAV5')
 
-figure(4)%编队参考函数速度
+% figure(4)%编队参考函数速度
+subplot(224);
 hold on
 box on
 plot(ht(length(tout),2),ht(length(tout),4),'ks')%终点
