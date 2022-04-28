@@ -1,7 +1,6 @@
 function [ output ] = computP( curr,over,obstacle )
-%COMPUTP 此处显示有关此函数的摘要
-%   此处显示详细说明
-  k_att=1;
+%势能计算
+k_att=1;
 repu=0;
 k_rep=100;
 Q_star=2;
