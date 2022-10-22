@@ -7,7 +7,7 @@ load ('alphaMap.mat');
 % MAX_Z = max(max(map.Z))+100;
 MAX_X = 100;
 MAX_Y = 100;
-MAX_Z = 100;
+MAX_Z = 20;
 Final_Data=double(map.Z);
 % mesh(map.X/30,map.Y/30,map.Z/50);
 axis('equal');
